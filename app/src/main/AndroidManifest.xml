@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".FolkloreActivity" />
         <activity android:name=".ContributeActivity" />
-        <activity android:name=".KitchensActivity"></activity>
+        <activity android:name=".KitchensActivity" />
+        <activity android:name=".Recipes1Activity"></activity>
     </application>
 
 </manifest>
