@@ -24,11 +24,17 @@ public class ContributeActivity extends AppCompatActivity {
 
         mFindKitchensButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 String location = mLocationEditText.getText().toString();
-                Intent intent = new Intent(ContributeActivity.this, KitchensActivity.class);
-                intent.putExtra("location", location);
-                startActivity(intent);
+                if (location.length() != 5) {
+                    mLocationEditText.setError("Please enter a 5 digit zipcode");
+                }else{
+                    Intent intent = new Intent(ContributeActivity.this, KitchensActivity.class);
+                    intent.putExtra("location", location);
+                    startActivity(intent);
+                    mLocationEditText.getText().clear();
+                }
+
             }
 
         });
