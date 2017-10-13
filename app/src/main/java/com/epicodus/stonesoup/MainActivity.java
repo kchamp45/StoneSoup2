@@ -13,6 +13,7 @@ import static com.epicodus.stonesoup.R.id.folklore_button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.folklore_button) Button mFolkloreButton;
+    @Bind(R.id.join_button) Button mJoinUsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v == mFolkloreButton){
             Intent intent = new Intent(MainActivity.this, FolkloreActivity.class);
             startActivity(intent);
+        }else if(v == mJoinUsButton) {
+            Intent intent = new Intent(MainActivity.this, ContributeActivity.class);
+            startActivity(intent);
         }
-
     }
 
 }
