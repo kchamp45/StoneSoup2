@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@android:color/holo_blue_light"
-        android:text="Find a cooking meet-up location near you:"
+        android:text="Find a StoneSoup meet-up location near you:"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -31,12 +31,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:background="?attr/colorButtonNormal"
-        android:textColor="@android:color/black"
         android:ems="10"
-        android:hint="@string/zip_code_hint"
+        android:hint="Enter Zip Code"
         android:inputType="number"
         android:padding="5dp"
-        />
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <Button
         android:id="@+id/find_kitchen_button"

@@ -28,8 +28,8 @@ JAVA and Android Studios.
 * I want to find my local locations to participate in Stone Soup gatherings.
 * I want to find the date and time of the meet-up.
 * I want to determine the recipes ahead of time before deciding to join the gathering.
-* I want to search recipes for ingredients that I would like to eat (for example, I may have religious preferences or food allergies).
-* I want contact the host if I have questions.
+* I want to search recipes for ingredients that I would like to try (for example, I may have religious preferences or food restrictions).
+* I want to contact the host if I have questions.
 
 ## Specs
 

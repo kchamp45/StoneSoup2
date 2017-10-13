@@ -11,16 +11,15 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ContributeActivity extends AppCompatActivity {
-    private Button mFindKitchensButton;
-    private EditText mLocationEditText;
-
+    @Bind(R.id.locationEditText) EditText mLocationEditText;
+    @Bind(R.id.find_kitchen_button) Button mFindKitchensButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contribute);
-        mFindKitchensButton = (Button) findViewById(R.id.find_kitchen_button);
-        mLocationEditText = (EditText) findViewById(R.id.locationEditText);
+
+        ButterKnife.bind(this);
 
         mFindKitchensButton.setOnClickListener(new View.OnClickListener() {
             @Override
