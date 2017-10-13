@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_light"
+    tools:context="com.epicodus.stonesoup.FolkloreActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="364dp"
+        android:layout_height="118dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:srcCompat="@drawable/old_soup" />
+
+    <TextView
+        android:id="@+id/editText"
+        android:layout_width="372dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text='The story behind "Stone Soup" dates back to the 18th Century.  In 1720, Madame de Noyer of France told the story of two hungry, traveling Jesuits who convinced the villagers to help them make soup out of stone. They asked the villagers to contribute water, vegetables and meat to the pot and dropped in a stone.  When the soup was done, the Jesuits discarded the stone.  Everyone tasted the soup and declared it fabulous!  '
+        android:textColorLink="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="6dp" />
+
+    <TextView
+        android:id="@+id/editText3"
+        android:layout_width="369dp"
+        android:layout_height="123dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Over the years, stone soup became symbolic of community spirit where each person contributes a small, simple part and then get to watch the birth of something amazing. The best ingredients?  Well, that would be friendship, generosity, and community. "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.925" />
+</android.support.constraint.ConstraintLayout>
