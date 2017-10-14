@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,10 +20,10 @@ public class KitchensActivity extends AppCompatActivity {
     @Bind(R.id.listView) ListView mListView;
 
     private String[] kitchens = new String[] {"Kim's Kitchen", "Rich's Farm",
-            "My Favorite Church", "Only Friends Space"};
+             "Only Friends Space"};
 
-    private String[] kitLocations = new String[]{"12345 SW Downhill Road",
-            "Somewhere in Gresham", "67890 NW Worship Lane", "23456 Someone's Basement"};
+    private String[] kitLocations = new String[]{"12345 SW Downhill Lane",
+            "Somewhere in Gresham", "23456 Someone's Basement"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,17 @@ public class KitchensActivity extends AppCompatActivity {
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String kitchen = ((TextView)view).getText().toString();
-                Intent intent = new Intent(KitchensActivity.this, Recipes1Activity.class);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position == 0) {
+                    Intent firstKitchen = new Intent(KitchensActivity.this, Recipes1Activity.class);
+                    startActivity(firstKitchen);
+                }else if(position == 1){
+                    Intent secondKitchen = new Intent(KitchensActivity.this, Recipes2Activity.class);
+                    startActivity(secondKitchen);
+                }else if(position == 2) {
+                    Intent thirdKitchen = new Intent(KitchensActivity.this, Recipes3Activity.class);
+                    startActivity(thirdKitchen);
+                }
             }
         });
     }
