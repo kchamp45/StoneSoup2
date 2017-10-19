@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_bright"
-    tools:context="com.epicodus.stonesoup.KitchensActivity">
+    tools:context="com.epicodus.stonesoup.SoupsActivity">
 
     <TextView
-        android:id="@+id/locationTextView"
+        android:id="@+id/soupTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:text="Kitchens near " />
+        android:text="Soups" />
 
     <ListView
         android:id="@+id/listView"
@@ -20,6 +20,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/locationTextView" />
+        android:layout_below="@+id/soupTextView" />
 
 </RelativeLayout>

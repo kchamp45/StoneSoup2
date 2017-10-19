@@ -11,8 +11,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ContributeActivity extends AppCompatActivity {
-    @Bind(R.id.locationEditText) EditText mLocationEditText;
-    @Bind(R.id.find_kitchen_button) Button mFindKitchensButton;
+    @Bind(R.id.soupEditText) EditText mSoupEditText;
+    @Bind(R.id.find_recipe_button) Button mFindRecipesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,18 +21,15 @@ public class ContributeActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mFindKitchensButton.setOnClickListener(new View.OnClickListener() {
+        mFindRecipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String location = mLocationEditText.getText().toString();
-                if (location.length() != 5) {
-                    mLocationEditText.setError("Please enter a 5 digit zipcode");
-                }else{
-                    Intent intent = new Intent(ContributeActivity.this, KitchensActivity.class);
-                    intent.putExtra("location", location);
+                String soup = mSoupEditText.getText().toString();
+
+                    Intent intent = new Intent(ContributeActivity.this, SoupsActivity.class);
+                    intent.putExtra("soup", soup);
                     startActivity(intent);
-                    mLocationEditText.getText().clear();
-                }
+                    mSoupEditText.getText().clear();
 
             }
 

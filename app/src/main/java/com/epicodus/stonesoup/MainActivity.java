@@ -13,7 +13,7 @@ import static com.epicodus.stonesoup.R.id.folklore_button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.folklore_button) Button mFolkloreButton;
-    @Bind(R.id.join_button) Button mJoinUsButton;
+    @Bind(R.id.soup_button) Button mSoupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         mFolkloreButton.setOnClickListener(this);
-        mJoinUsButton.setOnClickListener(this);
+        mSoupButton.setOnClickListener(this);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v == mFolkloreButton){
             Intent intent = new Intent(MainActivity.this, FolkloreActivity.class);
             startActivity(intent);
-        }else if(v == mJoinUsButton) {
+        }else if(v == mSoupButton) {
             Intent intent = new Intent(MainActivity.this, ContributeActivity.class);
             startActivity(intent);
         }

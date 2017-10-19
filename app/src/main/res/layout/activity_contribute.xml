@@ -19,29 +19,28 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@android:color/holo_blue_light"
-        android:text="Find a StoneSoup meet-up location near you:"
+        android:text="Find a recipe to make your own StoneSoup:"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/locationEditText"
+        android:id="@+id/soupEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/find_kitchen_button"
+        android:layout_above="@+id/find_recipe_button"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:background="?attr/colorButtonNormal"
         android:ems="10"
-        android:hint="Enter Zip Code"
-        android:inputType="number"
+        android:hint="Enter a soup"
         android:padding="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <Button
-        android:id="@+id/find_kitchen_button"
+        android:id="@+id/find_recipe_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find Kitchen"
+        android:text="Find Soup Recipe"
         android:background="@color/colorAccent"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="27dp" />
