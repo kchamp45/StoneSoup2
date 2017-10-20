@@ -41,7 +41,7 @@
         android:id="@+id/find_recipe_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find Soup Recipe"
+        android:text="Find Soups"
         android:background="@color/colorAccent"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="27dp" />
