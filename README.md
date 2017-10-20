@@ -1,12 +1,12 @@
 # Stone Soup PotLuck
 
-#### Epicodus Android Independent Project, 10/13/2017
+#### Epicodus Android Independent Project, 10/20/2017
 
 #### By **Kimberly H. Lu**
 
 [Github repository](https://github.com/kchamp45/StoneSoup)
 
-Welcome to the ultimate website for those who love to do potlucks!  This application allows you to find local meet-up locations so you can bring your ingredients, cook, and socialize with other cook enthusiasts.  The application will also allow you to search recipes that you would like to try out.
+Welcome to the ultimate website for those who love soups!  This application allows you to find inspirations from a list of amazing soups so you can gather your ingredients and other cook enthusiasts to cook and socialize.  The application will also allow you to browse soups and determine their ingredients before trying the recipe out.
 
 ![app-screenshot](https://github.com/kchamp45/StoneSoup/blob/master/app/src/main/res/drawable/soup.jpg?raw=true)
 
@@ -25,21 +25,20 @@ JAVA and Android Studios.
 ## User Stories:
 
 * I want to learn more about Stone Soup.
-* I want to find my local locations to participate in Stone Soup gatherings.
-* I want to find the date and time of the meet-up.
-* I want to determine the recipes ahead of time before deciding to join the gathering.
-* I want to search recipes for ingredients that I would like to try (for example, I may have religious preferences or food restrictions).
-* I want to contact the host if I have questions.
+* I want to find soups.
+* I want to determine the soup's ingredients before deciding to try it out (for example, I may have food restrictions or preferences).
+* I want to get the recipe for the soup.
+
 
 ## Specs
 
 | Behavior  | Input | Output |
 | ------------- |:-------------:| -----|
 | display history of Stone Soup  | click "Folklore" | Display description |
-| learn more about Stone Soup | click "Join Us"| place to enter zip code |
-| find locations of Stone Soup gatherings | click "Find Kitchens"| display kitchens located within 10 miles of entered zip code|
-| find recipes | click "Recipes" | display recipes|
-| filter through the recipes| select "vegan" | Display only vegan recipes|
+| get inspiration for soups for my Stone Soup gathering | click "Let's cook!"| place enter a soup name |
+| get a list of soups | click "Find Soups"| display list of soups|
+| find recipes | click "Click for Recipe" | transfer to website for recipe|
+| get an image of the soup| click "Click for Image" | Display the image|
 
 ### License
 
