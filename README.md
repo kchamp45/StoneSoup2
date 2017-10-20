@@ -36,7 +36,7 @@ JAVA and Android Studios.
 | ------------- |:-------------:| -----|
 | display history of Stone Soup  | click "Folklore" | Display description |
 | get inspiration for soups for my Stone Soup gathering | click "Let's cook!"| place enter a soup name |
-| get a list of soups | click "Find Soups"| display list of soups|
+| get a list of soups | enter a soup and click "Find Soups"| display list of soups|
 | find recipes | click "Click for Recipe" | transfer to website for recipe|
 | get an image of the soup| click "Click for Image" | Display the image|
 
