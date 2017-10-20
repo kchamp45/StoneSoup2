@@ -1,4 +1,4 @@
-package com.epicodus.stonesoup;
+package com.epicodus.stonesoup.models;
 
 import java.util.ArrayList;
 
@@ -6,13 +6,13 @@ import java.util.ArrayList;
 public class Soup {
         private String name;
         private int rating;
-        private String imageUrl;
+        private int prepTime;
         private ArrayList<String> ingredients = new ArrayList<>();
 
-    public Soup(String name, int rating, String imageUrl, ArrayList<String> ingredients) {
+    public Soup(String name, int rating, int prepTime, ArrayList<String> ingredients) {
         this.name = name;
         this.rating = rating;
-        this.imageUrl = imageUrl;
+        this.prepTime = prepTime;
         this.ingredients = ingredients;
     }
 
@@ -24,8 +24,9 @@ public class Soup {
         return rating;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public int getPrepTime() {
+        int minutes = prepTime / 60;
+        return minutes;
     }
 
     public ArrayList<String> getIngredients() {

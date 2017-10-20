@@ -1,4 +1,4 @@
-package com.epicodus.stonesoup;
+package com.epicodus.stonesoup.adapters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

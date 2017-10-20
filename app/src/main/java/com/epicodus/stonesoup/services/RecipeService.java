@@ -1,7 +1,7 @@
 package com.epicodus.stonesoup.services;
 
 import com.epicodus.stonesoup.Constants;
-import com.epicodus.stonesoup.Soup;
+import com.epicodus.stonesoup.models.Soup;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +27,8 @@ public class RecipeService {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YUMMLY_BASE_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.YUMMLY_QUERY_PARAMETER, soup)
                 .addQueryParameter(Constants.YUMMLY_ID_QUERY_PARAMETER, Constants.YUMMLY_ID_PARAMETER)
-                .addQueryParameter(Constants.YUMMLY_LIMIT_QUERY_PARAMETER, Constants.YUMMLY_LIMIT_PARAMETER);
+                .addQueryParameter(Constants.YUMMLY_LIMIT_QUERY_PARAMETER, Constants.YUMMLY_LIMIT_PARAMETER)
+                .addQueryParameter(Constants.YUMMLY_KEY_QUERY_PARAMETER, Constants.API_KEY);
         String url = urlBuilder.build().toString();
 
         Request request= new Request.Builder()
@@ -48,14 +49,14 @@ public class RecipeService {
                 JSONObject soupJSON = matchJSON.getJSONObject(i);
                 String name = soupJSON.getString("recipeName");
                 int rating = soupJSON.getInt("rating");
-                String imageUrl = soupJSON.getString("imageUrlsBySize");
+                int totalPrepTime = soupJSON.getInt("totalTimeInSeconds");
 
                 ArrayList<String> ingredients = new ArrayList<>();
                 JSONArray ingredientJSON = soupJSON.getJSONArray("ingredients");
                 for (int y = 0; y < ingredientJSON.length(); y++) {
                     ingredients.add(ingredientJSON.get(y).toString());
                 }
-                Soup soup = new Soup(name, rating, imageUrl, ingredients);
+                Soup soup = new Soup(name, rating, totalPrepTime, ingredients);
                 soups.add(soup);
             }
         }

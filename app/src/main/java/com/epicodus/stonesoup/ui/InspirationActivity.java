@@ -1,4 +1,4 @@
-package com.epicodus.stonesoup;
+package com.epicodus.stonesoup.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,17 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.epicodus.stonesoup.R;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ContributeActivity extends AppCompatActivity {
+public class InspirationActivity extends AppCompatActivity {
     @Bind(R.id.soupEditText) EditText mSoupEditText;
     @Bind(R.id.find_recipe_button) Button mFindRecipesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contribute);
+        setContentView(R.layout.activity_inspiration);
 
         ButterKnife.bind(this);
 
@@ -26,7 +28,7 @@ public class ContributeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String soup = mSoupEditText.getText().toString();
 
-                    Intent intent = new Intent(ContributeActivity.this, SoupsActivity.class);
+                    Intent intent = new Intent(InspirationActivity.this, SoupsActivity.class);
                     intent.putExtra("soup", soup);
                     startActivity(intent);
                     mSoupEditText.getText().clear();

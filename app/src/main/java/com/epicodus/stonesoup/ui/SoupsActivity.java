@@ -1,16 +1,19 @@
-package com.epicodus.stonesoup;
+package com.epicodus.stonesoup.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.epicodus.stonesoup.R;
+import com.epicodus.stonesoup.adapters.MySoupArrayAdapter;
+import com.epicodus.stonesoup.adapters.SoupListAdapter;
+import com.epicodus.stonesoup.models.Soup;
 import com.epicodus.stonesoup.services.RecipeService;
 
 import java.io.IOException;
@@ -26,10 +29,8 @@ import static com.epicodus.stonesoup.R.drawable.soup;
 
 
 public class SoupsActivity extends AppCompatActivity {
-    public static final String TAG = SoupsActivity.class.getSimpleName();
-
-    @Bind(R.id.soupTextView) TextView mSoupTextView;
-    @Bind(R.id.listView) ListView mListView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    private SoupListAdapter mAdapter;
 
     public ArrayList<Soup> soups = new ArrayList<>();
 
@@ -39,13 +40,12 @@ public class SoupsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_soups);
         ButterKnife.bind(this);
 
-        Typeface fancyFont = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
-        mSoupTextView.setTypeface(fancyFont);
+//        Typeface fancyFont = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
+//        mCuisineTextView.setTypeface(fancyFont);
 
         Intent intent = getIntent();
-        String location = intent.getStringExtra("location");
+        String soup = intent.getStringExtra("soup");
 
-        mSoupTextView.setText("Try these soup: " + soup);
         getSoups(soup);
     }
 
@@ -65,21 +65,14 @@ public class SoupsActivity extends AppCompatActivity {
                 SoupsActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                       String[] soupNames = new String[soups.size()];
-                        for (int i = 0; i < soupNames.length; i++) {
-                            soupNames[i] = soups.get(i).getName();
-                        }
-                        MySoupArrayAdapter adapter = new MySoupArrayAdapter(SoupsActivity.this,
-                                android.R.layout.simple_list_item_1, soupNames);
-                        mListView.setAdapter(adapter);
+                        mAdapter = new SoupListAdapter(getApplicationContext(), soups);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager =
+                                new LinearLayoutManager(SoupsActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
 
-                        for (Soup soup : soups) {
-                            Log.d(TAG, "Name: " + soup.getName());
-                            Log.d(TAG, "Rating: " + soup.getRating());
-                            Log.d(TAG, "Image url: " + soup.getImageUrl());
-                            Log.d(TAG, "Ingredients: " + android.text.TextUtils.join(", ", soup.getIngredients()));
 
-                        }
                     }
                 });
             }

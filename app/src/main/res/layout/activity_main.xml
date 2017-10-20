@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.epicodus.stonesoup.MainActivity">
+    tools:context="com.epicodus.stonesoup.ui.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -29,7 +29,7 @@
         android:layout_marginTop="9dp"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:text="Welcome to StoneSoup, an application for potlucks, but with a twist.  Instead of bringing a dish to the gathering, we invite you to bring an ingredient and cook with us.  Here, you will find cooking recipes and locations where we meet to cook.  Come join us on a journey to delicious food.  Don’t be afraid. We can make amazing food out of simple ingredients! "
+        android:text="Welcome to StoneSoup.  Find inspirations for your next Stone Soup gathering.   Here, you will find lots of yummy soup recipes.  Begin your journey to delicious soup.  Don’t be afraid. We can make amazing food out of simple ingredients! "
         android:textColorLink="@android:color/darker_gray"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"

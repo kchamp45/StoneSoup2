@@ -1,7 +1,9 @@
-package com.epicodus.stonesoup;
+package com.epicodus.stonesoup.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.epicodus.stonesoup.R;
 
 public class FolkloreActivity extends AppCompatActivity {
 
