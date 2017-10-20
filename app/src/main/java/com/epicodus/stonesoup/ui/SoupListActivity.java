@@ -2,16 +2,16 @@ package com.epicodus.stonesoup.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ListView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.epicodus.stonesoup.R;
-import com.epicodus.stonesoup.adapters.MySoupArrayAdapter;
 import com.epicodus.stonesoup.adapters.SoupListAdapter;
 import com.epicodus.stonesoup.models.Soup;
 import com.epicodus.stonesoup.services.RecipeService;
@@ -25,10 +25,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import static com.epicodus.stonesoup.R.drawable.soup;
 
-
-public class SoupsActivity extends AppCompatActivity {
+public class SoupListActivity extends AppCompatActivity {
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private SoupListAdapter mAdapter;
 
@@ -41,7 +39,8 @@ public class SoupsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 //        Typeface fancyFont = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
-//        mCuisineTextView.setTypeface(fancyFont);
+//        mImageTextView.setTypeface(fancyFont);
+
 
         Intent intent = getIntent();
         String soup = intent.getStringExtra("soup");
@@ -59,38 +58,25 @@ public class SoupsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) {
+            public void onResponse(Call call, Response response) throws IOException {
                 soups = recipeService.processResults(response);
 
-                SoupsActivity.this.runOnUiThread(new Runnable() {
+                SoupListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mAdapter = new SoupListAdapter(getApplicationContext(), soups);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(SoupsActivity.this);
+                                new LinearLayoutManager(SoupListActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
-
 
                     }
                 });
             }
+
         });
     }
+
 }
 
-
-////                    Intent firstKitchen = new Intent(SoupsActivity.this, Recipes1Activity.class);
-////                    startActivity(firstKitchen);
-////                }else if(position == 1){
-////                    Intent secondKitchen = new Intent(SoupsActivity.this, Recipes2Activity.class);
-////                    startActivity(secondKitchen);
-////                }else if(position == 2) {
-////                    Intent thirdKitchen = new Intent(SoupsActivity.this, Recipes3Activity.class);
-////                    startActivity(thirdKitchen);
-////                }
-//
-//        Intent intent = getIntent();
-//        String location = intent.getStringExtra("soup");
-//        mSoupTextView.setText("Here are the soups: " + soup);

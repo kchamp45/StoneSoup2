@@ -28,7 +28,7 @@ public class InspirationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String soup = mSoupEditText.getText().toString();
 
-                    Intent intent = new Intent(InspirationActivity.this, SoupsActivity.class);
+                    Intent intent = new Intent(InspirationActivity.this, SoupListActivity.class);
                     intent.putExtra("soup", soup);
                     startActivity(intent);
                     mSoupEditText.getText().clear();
