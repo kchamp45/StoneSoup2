@@ -1,6 +1,8 @@
 package com.epicodus.stonesoup.ui;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,14 +18,20 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class SoupDetailFragment extends Fragment {
-    @Bind(R.id.soupNameTextView) TextView mNameLabel;
-    @Bind(R.id.ingredientTextView) TextView mIngredientLabel;
-    @Bind(R.id.saveSoupButton) TextView mSaveSoupButton;
+public class SoupDetailFragment extends Fragment implements View.OnClickListener {
+    @Bind(R.id.soupNameTextView)
+    TextView mNameLabel;
+    @Bind(R.id.ingredientTextView)
+    TextView mIngredientLabel;
+    @Bind(R.id.recipeTextView)
+    TextView mRecipeLabel;
+    @Bind(R.id.saveSoupButton)
+    TextView mSaveSoupButton;
 
     private Soup mSoup;
 
-    public SoupDetailFragment() { }
+    public SoupDetailFragment() {
+    }
 
     public static SoupDetailFragment newInstance(Soup soup) {
         SoupDetailFragment soupDetailFragment = new SoupDetailFragment();
@@ -47,6 +55,17 @@ public class SoupDetailFragment extends Fragment {
         mNameLabel.setText(mSoup.getName());
         mIngredientLabel.setText(android.text.TextUtils.join(", ", mSoup.getIngredients()));
 
+        mRecipeLabel.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mRecipeLabel) {
+            Uri webpage = Uri.parse("http://www.allrecipes.com");
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+            startActivity(webIntent);
+        }
     }
 }
