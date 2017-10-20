@@ -25,6 +25,7 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
     TextView mIngredientLabel;
     @Bind(R.id.recipeTextView)
     TextView mRecipeLabel;
+    @Bind(R.id.imageTextView) TextView mImageLabel;
     @Bind(R.id.saveSoupButton)
     TextView mSaveSoupButton;
 
@@ -53,8 +54,9 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
         ButterKnife.bind(this, view);
 
         mNameLabel.setText(mSoup.getName());
-        mIngredientLabel.setText(android.text.TextUtils.join(", ", mSoup.getIngredients()));
+        mIngredientLabel.setText("INGREDIENTS: " + android.text.TextUtils.join(", ", mSoup.getIngredients()));
 
+        mImageLabel.setOnClickListener(this);
         mRecipeLabel.setOnClickListener(this);
 
         return view;
@@ -66,6 +68,11 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
             Uri webpage = Uri.parse("http://www.allrecipes.com");
             Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(webIntent);
+        }
+
+        if(v == mImageLabel){
+            Intent imageIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mSoup.getImageUrl()));
+            startActivity(imageIntent);
         }
     }
 }

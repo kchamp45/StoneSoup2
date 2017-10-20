@@ -52,7 +52,7 @@ public class RecipeService {
                 String name = soupJSON.getString("recipeName");
                 int rating = soupJSON.getInt("rating");
                 int totalPrepTime = soupJSON.getInt("totalTimeInSeconds");
-                String imageUrl = soupJSON.getString("imageUrlsBySize");
+                String imageUrl = soupJSON.getJSONObject("imageUrlsBySize").getString("90");
 
                 ArrayList<String> ingredients = new ArrayList<>();
                 JSONArray ingredientJSON = soupJSON.getJSONArray("ingredients");
@@ -61,7 +61,6 @@ public class RecipeService {
                 }
                 Soup soup = new Soup(name, rating, totalPrepTime, ingredients, imageUrl);
                 soups.add(soup);
-                Log.d("RecipeService", soup.getImageUrl());
             }
 
         }
