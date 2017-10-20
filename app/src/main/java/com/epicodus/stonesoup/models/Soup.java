@@ -10,16 +10,16 @@ public class Soup {
         private int rating;
         private int prepTime;
         private ArrayList<String> ingredients = new ArrayList<>();
+        private String imageUrl;
 
     public Soup(){}
 
-
-    public Soup(String name, int rating, int prepTime, ArrayList<String> ingredients) {
+    public Soup(String name, int rating, int prepTime, ArrayList<String> ingredients, String imageUrl) {
         this.name = name;
         this.rating = rating;
         this.prepTime = prepTime;
         this.ingredients = ingredients;
-
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -39,5 +39,7 @@ public class Soup {
         return ingredients;
     }
 
-
+    public String getImageUrl() {
+        return imageUrl;
+    }
 }

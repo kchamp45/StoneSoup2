@@ -1,5 +1,7 @@
 package com.epicodus.stonesoup.services;
 
+import android.util.Log;
+
 import com.epicodus.stonesoup.Constants;
 import com.epicodus.stonesoup.models.Soup;
 
@@ -50,15 +52,18 @@ public class RecipeService {
                 String name = soupJSON.getString("recipeName");
                 int rating = soupJSON.getInt("rating");
                 int totalPrepTime = soupJSON.getInt("totalTimeInSeconds");
+                String imageUrl = soupJSON.getString("imageUrlsBySize");
 
                 ArrayList<String> ingredients = new ArrayList<>();
                 JSONArray ingredientJSON = soupJSON.getJSONArray("ingredients");
                 for (int y = 0; y < ingredientJSON.length(); y++) {
                     ingredients.add(ingredientJSON.get(y).toString());
                 }
-                Soup soup = new Soup(name, rating, totalPrepTime, ingredients);
+                Soup soup = new Soup(name, rating, totalPrepTime, ingredients, imageUrl);
                 soups.add(soup);
+                Log.d("RecipeService", soup.getImageUrl());
             }
+
         }
         catch (IOException e){
             e.printStackTrace();

@@ -71,6 +71,10 @@ public class SoupListActivity extends AppCompatActivity {
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
 
+                        for(Soup soup : soups){
+                            Log.d("SoupListActivity", soup.getImageUrl());
+                        }
+
                     }
                 });
             }

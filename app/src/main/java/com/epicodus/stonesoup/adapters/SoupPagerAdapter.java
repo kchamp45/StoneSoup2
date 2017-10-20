@@ -21,10 +21,12 @@ public class SoupPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         return SoupDetailFragment.newInstance(mSoups.get(position));
     }
+
     @Override
     public int getCount(){
         return mSoups.size();
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return mSoups.get(position).getName();

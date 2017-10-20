@@ -18,8 +18,6 @@ import butterknife.ButterKnife;
 
 public class SoupDetailFragment extends Fragment {
     @Bind(R.id.soupNameTextView) TextView mNameLabel;
-    @Bind(R.id.ratingTextView) TextView mRatingLabel;
-    @Bind(R.id.prepTextView) TextView mPrepLabel;
     @Bind(R.id.ingredientTextView) TextView mIngredientLabel;
     @Bind(R.id.saveSoupButton) TextView mSaveSoupButton;
 
@@ -47,8 +45,6 @@ public class SoupDetailFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         mNameLabel.setText(mSoup.getName());
-        mRatingLabel.setText(Double.toString(mSoup.getRating()) + "/5");
-        mPrepLabel.setText((int) mSoup.getPrepTime());
         mIngredientLabel.setText(android.text.TextUtils.join(", ", mSoup.getIngredients()));
 
         return view;
