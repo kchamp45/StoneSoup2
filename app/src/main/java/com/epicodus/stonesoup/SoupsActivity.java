@@ -25,7 +25,7 @@ import okhttp3.Response;
 import static com.epicodus.stonesoup.R.drawable.soup;
 
 
-public class SoupsActivity extends AppCompatActivity implements View.OnClickListener{
+public class SoupsActivity extends AppCompatActivity {
     public static final String TAG = SoupsActivity.class.getSimpleName();
 
     @Bind(R.id.soupTextView) TextView mSoupTextView;
@@ -36,27 +36,58 @@ public class SoupsActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kitchens);
+        setContentView(R.layout.activity_soups);
         ButterKnife.bind(this);
-        getSoups(soup);
 
         Typeface fancyFont = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
         mSoupTextView.setTypeface(fancyFont);
 
-        MySoupArrayAdapter adapter = new MySoupArrayAdapter(this, android.R.layout.simple_list_item_1, soups);
-        mListView.setAdapter(adapter);
+        Intent intent = getIntent();
+        String location = intent.getStringExtra("location");
 
-//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                @Override
-//                public void onItemClickListener(new AdapterView.OnItemClickListener() {
-//                    String soup = ((TextView) view).getText().toString();
-//                    Toast.makeText(SoupsActivity.this,soup,Toast.LENGTH_LONG).show();
-//                }
-//            }
-//            });
-////                if (position == 0) {
+        mSoupTextView.setText("Try these soup: " + soup);
+        getSoups(soup);
+    }
+
+    private void getSoups(String soup) {
+        final RecipeService recipeService = new RecipeService();
+        recipeService.findRecipes(soup, new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                soups = recipeService.processResults(response);
+
+                SoupsActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                       String[] soupNames = new String[soups.size()];
+                        for (int i = 0; i < soupNames.length; i++) {
+                            soupNames[i] = soups.get(i).getName();
+                        }
+                        MySoupArrayAdapter adapter = new MySoupArrayAdapter(SoupsActivity.this,
+                                android.R.layout.simple_list_item_1, soupNames);
+                        mListView.setAdapter(adapter);
+
+                        for (Soup soup : soups) {
+                            Log.d(TAG, "Name: " + soup.getName());
+                            Log.d(TAG, "Rating: " + soup.getRating());
+                            Log.d(TAG, "Image url: " + soup.getImageUrl());
+                            Log.d(TAG, "Ingredients: " + android.text.TextUtils.join(", ", soup.getIngredients()));
+
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
+
+
 ////                    Intent firstKitchen = new Intent(SoupsActivity.this, Recipes1Activity.class);
 ////                    startActivity(firstKitchen);
 ////                }else if(position == 1){
@@ -70,29 +101,3 @@ public class SoupsActivity extends AppCompatActivity implements View.OnClickList
 //        Intent intent = getIntent();
 //        String location = intent.getStringExtra("soup");
 //        mSoupTextView.setText("Here are the soups: " + soup);
-
-
-            private void getSoups(String soup) {
-                final RecipeService recipeService = new RecipeService();
-                recipeService.findRecipes(soup, new Callback() {
-
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        try {
-                            String jsonData = response.body().string();
-                            if (response.isSuccessful()) {
-                                Log.v(TAG, jsonData);
-                                soups = recipeService.processResults(response);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-    }
-}

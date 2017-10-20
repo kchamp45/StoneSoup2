@@ -33,6 +33,7 @@
         android:background="?attr/colorButtonNormal"
         android:ems="10"
         android:hint="Enter a soup"
+        android:inputType="text"
         android:padding="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 

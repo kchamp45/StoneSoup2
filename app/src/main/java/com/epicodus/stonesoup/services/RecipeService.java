@@ -47,7 +47,7 @@ public class RecipeService {
             for (int i = 0; i < matchJSON.length(); i++) {
                 JSONObject soupJSON = matchJSON.getJSONObject(i);
                 String name = soupJSON.getString("recipeName");
-                double rating = soupJSON.getInt("rating");
+                int rating = soupJSON.getInt("rating");
                 String imageUrl = soupJSON.getString("imageUrlsBySize");
 
                 ArrayList<String> ingredients = new ArrayList<>();

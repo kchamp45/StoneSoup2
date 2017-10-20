@@ -3,13 +3,15 @@ package com.epicodus.stonesoup;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
+import java.util.ArrayList;
+
 /**
  * Created by kimlu on 10/13/17.
  */
 
 public class MySoupArrayAdapter extends ArrayAdapter {
     private Context mContext;
-    private String [] mSoups;
+    private String[] mSoups;
 
 
     public MySoupArrayAdapter(Context mContext, int resource, String[] mSoups) {
