@@ -38,10 +38,6 @@ public class SoupListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_soups);
         ButterKnife.bind(this);
 
-//        Typeface fancyFont = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
-//        mImageTextView.setTypeface(fancyFont);
-
-
         Intent intent = getIntent();
         String soup = intent.getStringExtra("soup");
 

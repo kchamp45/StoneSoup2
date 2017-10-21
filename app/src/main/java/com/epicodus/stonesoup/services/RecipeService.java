@@ -27,8 +27,9 @@ public class RecipeService {
                 .build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YUMMLY_BASE_URL).newBuilder();
-        urlBuilder.addQueryParameter(Constants.YUMMLY_QUERY_PARAMETER, soup)
+        urlBuilder.addQueryParameter(Constants.YUMMLY_INGREDIENT_QUERY_PARAMETER, soup)
                 .addQueryParameter(Constants.YUMMLY_ID_QUERY_PARAMETER, Constants.YUMMLY_ID_PARAMETER)
+                .addQueryParameter(Constants.YUMMLY_COURSE_QUERY_PARAMETER, Constants.YUMMLY_COURSE_PARAMETER)
                 .addQueryParameter(Constants.YUMMLY_LIMIT_QUERY_PARAMETER, Constants.YUMMLY_LIMIT_PARAMETER)
                 .addQueryParameter(Constants.YUMMLY_KEY_QUERY_PARAMETER, Constants.API_KEY);
         String url = urlBuilder.build().toString();

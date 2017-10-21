@@ -65,7 +65,7 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if (v == mRecipeLabel) {
-            Uri webpage = Uri.parse("http://www.allrecipes.com");
+            Uri webpage = Uri.parse("http://www.allrecipes.com" + "/search/results/?wt=" + mSoup.getName());
             Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(webIntent);
         }

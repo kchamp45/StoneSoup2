@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@android:color/holo_blue_light"
-        android:text="Find a recipe to make your own StoneSoup:"
+        android:text="Get inspiration for your own StoneSoup.  Start with your favorite ingredient:"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
         android:layout_marginBottom="10dp"
         android:background="?attr/colorButtonNormal"
         android:ems="10"
-        android:hint="Enter a soup"
+        android:hint="Enter an ingredient"
         android:inputType="text"
         android:padding="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat" />
