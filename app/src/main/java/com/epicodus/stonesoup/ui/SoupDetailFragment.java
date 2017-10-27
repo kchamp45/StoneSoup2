@@ -9,8 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.epicodus.stonesoup.Constants;
 import com.epicodus.stonesoup.R;
 import com.epicodus.stonesoup.models.Soup;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
 
@@ -62,11 +67,20 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
         mImageLabel.setOnClickListener(this);
         mRecipeLabel.setOnClickListener(this);
 
+        mSaveSoupButton.setOnClickListener(this);
+
         return view;
     }
 
     @Override
     public void onClick(View v) {
+        if (v == mSaveSoupButton) {
+            DatabaseReference soupRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_SOUPS);
+            soupRef.push().setValue(mSoup);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
         if (v == mRecipeLabel) {
             Uri webpage = Uri.parse("http://www.allrecipes.com" + "/search/results/?wt=" + mSoup.getName());
             Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);

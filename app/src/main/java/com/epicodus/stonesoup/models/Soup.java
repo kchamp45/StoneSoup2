@@ -3,13 +3,14 @@ package com.epicodus.stonesoup.models;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Parcel
 public class Soup {
     private String name;
     private int rating;
     private int prepTime;
-    private ArrayList<String> ingredients = new ArrayList<>();
+    private List<String> ingredients = new ArrayList<>();
     private String imageUrl;
     private String restriction;
 
@@ -38,7 +39,7 @@ public class Soup {
         return minutes;
     }
 
-    public ArrayList<String> getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 

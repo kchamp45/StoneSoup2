@@ -16,5 +16,6 @@ public class Constants {
     public static final String YUMMLY_LIMIT_PARAMETER = "true";
 
     public static final String PREFERENCES_RESTRICTION_KEY = "excludedIngredient";
+    public static final String FIREBASE_CHILD_SOUPS = "soups";
 
 }
