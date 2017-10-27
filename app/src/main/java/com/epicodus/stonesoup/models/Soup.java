@@ -6,20 +6,23 @@ import java.util.ArrayList;
 
 @Parcel
 public class Soup {
-        private String name;
-        private int rating;
-        private int prepTime;
-        private ArrayList<String> ingredients = new ArrayList<>();
-        private String imageUrl;
+    private String name;
+    private int rating;
+    private int prepTime;
+    private ArrayList<String> ingredients = new ArrayList<>();
+    private String imageUrl;
+    private String restriction;
 
-    public Soup(){}
+    public Soup() {
+    }
 
-    public Soup(String name, int rating, int prepTime, ArrayList<String> ingredients, String imageUrl) {
+    public Soup(String name, int rating, int prepTime, ArrayList<String> ingredients, String imageUrl, String restriction) {
         this.name = name;
         this.rating = rating;
         this.prepTime = prepTime;
         this.ingredients = ingredients;
         this.imageUrl = imageUrl;
+        this.restriction = restriction;
     }
 
     public String getName() {
@@ -41,5 +44,9 @@ public class Soup {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getRestriction() {
+        return restriction;
     }
 }

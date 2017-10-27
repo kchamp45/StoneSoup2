@@ -70,6 +70,17 @@
                 android:paddingTop="20dp">
 
                 <TextView
+                    android:id="@+id/restrictionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:text="peanut"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="15sp" />
+
+                <TextView
                     android:id="@+id/ingredientTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

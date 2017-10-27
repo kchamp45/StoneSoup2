@@ -26,6 +26,7 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
     @Bind(R.id.recipeTextView)
     TextView mRecipeLabel;
     @Bind(R.id.imageTextView) TextView mImageLabel;
+    @Bind(R.id.restrictionTextView) TextView mRestrictionLabel;
     @Bind(R.id.saveSoupButton)
     TextView mSaveSoupButton;
 
@@ -55,6 +56,8 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
 
         mNameLabel.setText(mSoup.getName());
         mIngredientLabel.setText("INGREDIENTS: " + android.text.TextUtils.join(", ", mSoup.getIngredients()));
+        mRestrictionLabel.setText("RESTRICTIONS: No " + mSoup.getRestriction());
+
 
         mImageLabel.setOnClickListener(this);
         mRecipeLabel.setOnClickListener(this);

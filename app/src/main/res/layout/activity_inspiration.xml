@@ -27,7 +27,7 @@
         android:id="@+id/soupEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/find_recipe_button"
+        android:layout_above="@+id/restrictionEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:background="?attr/colorButtonNormal"
@@ -36,6 +36,21 @@
         android:inputType="text"
         android:padding="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <EditText
+        android:id="@+id/restrictionEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/find_recipe_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="?attr/colorButtonNormal"
+        android:ems="10"
+        android:hint="Ingredient to exclude"
+        android:inputType="text"
+        android:padding="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
 
     <Button
         android:id="@+id/find_recipe_button"

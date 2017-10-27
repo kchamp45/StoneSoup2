@@ -21,13 +21,14 @@ import okhttp3.Response;
 
 
 public class RecipeService {
-    public static void findRecipes(String soup, Callback callback) {
+    public static void findRecipes(String soup, String allergy, Callback callback) {
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YUMMLY_BASE_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.YUMMLY_INGREDIENT_QUERY_PARAMETER, soup)
+                .addQueryParameter(Constants.YUMMLY_RESTRICTION_PARAMETER, allergy)
                 .addQueryParameter(Constants.YUMMLY_ID_QUERY_PARAMETER, Constants.YUMMLY_ID_PARAMETER)
                 .addQueryParameter(Constants.YUMMLY_COURSE_QUERY_PARAMETER, Constants.YUMMLY_COURSE_PARAMETER)
                 .addQueryParameter(Constants.YUMMLY_LIMIT_QUERY_PARAMETER, Constants.YUMMLY_LIMIT_PARAMETER)
@@ -47,6 +48,8 @@ public class RecipeService {
         try {
             String jsonData = response.body().string();
             JSONObject yummlyJSON = new JSONObject(jsonData);
+            JSONObject criteriaJSON = yummlyJSON.getJSONObject("criteria");
+            String restriction = criteriaJSON.getJSONArray("excludedIngredient").get(0).toString();
             JSONArray matchJSON = yummlyJSON.getJSONArray("matches");
             for (int i = 0; i < matchJSON.length(); i++) {
                 JSONObject soupJSON = matchJSON.getJSONObject(i);
@@ -60,7 +63,7 @@ public class RecipeService {
                 for (int y = 0; y < ingredientJSON.length(); y++) {
                     ingredients.add(ingredientJSON.get(y).toString());
                 }
-                Soup soup = new Soup(name, rating, totalPrepTime, ingredients, imageUrl);
+                Soup soup = new Soup(name, rating, totalPrepTime, ingredients, imageUrl, restriction);
                 soups.add(soup);
             }
 

@@ -1,8 +1,10 @@
 package com.epicodus.stonesoup.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.epicodus.stonesoup.Constants;
 import com.epicodus.stonesoup.R;
 import com.epicodus.stonesoup.adapters.SoupListAdapter;
 import com.epicodus.stonesoup.models.Soup;
@@ -27,6 +30,9 @@ import okhttp3.Response;
 
 
 public class SoupListActivity extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
+    private String mRestriction;
+
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private SoupListAdapter mAdapter;
 
@@ -40,13 +46,20 @@ public class SoupListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String soup = intent.getStringExtra("soup");
+        String restriction = intent.getStringExtra("restriction");
 
-        getSoups(soup);
+        getSoups(soup, restriction);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRestriction = mSharedPreferences.getString(Constants.PREFERENCES_RESTRICTION_KEY, null);
+        if (mRestriction != null) {
+            getSoups(soup, mRestriction);
+        }
     }
 
-    private void getSoups(String soup) {
+    private void getSoups(String soup, String restriction) {
         final RecipeService recipeService = new RecipeService();
-        recipeService.findRecipes(soup, new Callback() {
+        recipeService.findRecipes(soup, restriction, new Callback() {
 
             @Override
             public void onFailure(Call call, IOException e) {

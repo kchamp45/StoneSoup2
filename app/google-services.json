@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "561697323879",
+    "firebase_url": "https://soups-295c8.firebaseio.com",
+    "project_id": "soups-295c8",
+    "storage_bucket": "soups-295c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561697323879:android:276c5d0935e5f045",
+        "android_client_info": {
+          "package_name": "com.epicodus.stonesoup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561697323879-7h0q84r3g3fvdsqtjndodu4r8hmlqlhn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.stonesoup",
+            "certificate_hash": "3d93e4100901f454dff40bf82f475a75c8737a8b"
+          }
+        },
+        {
+          "client_id": "561697323879-i2u6mvdhduol88rek8epsao38d9aeahl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCjCByUPIcb8KqVk5Pv8SOkVxs6v4iJYc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561697323879-i2u6mvdhduol88rek8epsao38d9aeahl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

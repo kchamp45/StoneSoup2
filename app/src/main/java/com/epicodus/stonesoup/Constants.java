@@ -11,7 +11,10 @@ public class Constants {
     public static final String YUMMLY_INGREDIENT_QUERY_PARAMETER = "allowedIngredient[]";
     public static final String YUMMLY_COURSE_QUERY_PARAMETER = "allowedCourse[]";
     public static final String YUMMLY_COURSE_PARAMETER = "course^course-Soups";
+    public static final String YUMMLY_RESTRICTION_PARAMETER ="excludedIngredient[]";
     public static final String YUMMLY_LIMIT_QUERY_PARAMETER = "requirePictures";
     public static final String YUMMLY_LIMIT_PARAMETER = "true";
+
+    public static final String PREFERENCES_RESTRICTION_KEY = "excludedIngredient";
 
 }
