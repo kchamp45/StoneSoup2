@@ -5,42 +5,42 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:background="#ffffff"
         android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical"
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/soupNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/soupNameTextView"
-            android:textSize="20dp"
-            android:textStyle="bold"
             android:text="Recipe Name"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/prepTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/prepTextView"
-            android:textSize="15dp"
-            android:textStyle="italic"
             android:text="Prep Time"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"
+            android:textStyle="italic" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="344dp"
+            android:layout_height="39dp">
 
             <TextView
+                android:id="@+id/ratingTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rating"
-                android:id="@+id/ratingTextView"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:textColor="@color/colorAccent"/>
+                android:text="Rating"
+                android:textColor="@color/colorAccent" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

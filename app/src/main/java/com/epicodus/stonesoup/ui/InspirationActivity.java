@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,13 +18,14 @@ import com.epicodus.stonesoup.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class InspirationActivity extends AppCompatActivity {
+public class InspirationActivity extends AppCompatActivity implements View.OnClickListener {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 
     @Bind(R.id.soupEditText) EditText mSoupEditText;
     @Bind(R.id.restrictionEditText) EditText mRestrictionEditText;
     @Bind(R.id.find_recipe_button) Button mFindRecipesButton;
+    @Bind(R.id.savedSoupListButton) Button mSavedSoupListButton;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
 
     @Override
@@ -38,28 +40,35 @@ public class InspirationActivity extends AppCompatActivity {
         Typeface fancyFont = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
         mAppNameTextView.setTypeface(fancyFont);
 
-        mFindRecipesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String soup = mSoupEditText.getText().toString();
-                if (v == mFindRecipesButton) {
-                    String excludedIngredient = mRestrictionEditText.getText().toString();
-                    if (!(excludedIngredient).equals("")) {
-                        addToSharedPreferences(excludedIngredient);
-                    }
+        mFindRecipesButton.setOnClickListener(this);
+        mSavedSoupListButton.setOnClickListener(this);
 
-                    Intent intent = new Intent(InspirationActivity.this, SoupListActivity.class);
-                    intent.putExtra("soup", soup);
-                    intent.putExtra("restriction", excludedIngredient);
-                    startActivity(intent);
-                    mSoupEditText.getText().clear();
-                    mRestrictionEditText.getText().clear();
-
-                }
-
-            }
-        });
     }
+
+    @Override
+    public void onClick(View v) {
+        String soup = mSoupEditText.getText().toString();
+        if (v == mFindRecipesButton) {
+            String excludedIngredient = mRestrictionEditText.getText().toString();
+            if (!(excludedIngredient).equals("")) {
+                addToSharedPreferences(excludedIngredient);
+            }
+
+            Intent intent = new Intent(InspirationActivity.this, SoupListActivity.class);
+            intent.putExtra("soup", soup);
+            intent.putExtra("restriction", excludedIngredient);
+            startActivity(intent);
+            mSoupEditText.getText().clear();
+            mRestrictionEditText.getText().clear();
+
+        }
+        if(v == mSavedSoupListButton){
+            Intent intent = new Intent(InspirationActivity.this, SavedSoupListActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
     private void addToSharedPreferences(String excludedIngredient) {
         mEditor.putString(Constants.PREFERENCES_RESTRICTION_KEY, excludedIngredient).apply();
     }

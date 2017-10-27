@@ -21,7 +21,8 @@
         <activity android:name=".ui.FolkloreActivity" />
         <activity android:name=".ui.InspirationActivity" />
         <activity android:name=".ui.SoupListActivity" />
-        <activity android:name=".ui.SoupDetailActivity"></activity>
+        <activity android:name=".ui.SoupDetailActivity" />
+        <activity android:name=".ui.SavedSoupListActivity"></activity>
     </application>
 
 </manifest>

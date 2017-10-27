@@ -19,46 +19,62 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@android:color/holo_blue_light"
-        android:text="Get inspiration for your own StoneSoup.  Start with your favorite ingredient:"
-        android:textSize="30sp"
+        android:text="Get inspiration for your own StoneSoup gathering.  Start with your favorite ingredient:"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/soupEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/restrictionEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="29dp"
         android:background="?attr/colorButtonNormal"
         android:ems="10"
         android:hint="Enter an ingredient"
         android:inputType="text"
         android:padding="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat" />
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_above="@+id/restrictionEditText"
+        android:layout_alignLeft="@+id/restrictionEditText"
+        android:layout_alignStart="@+id/restrictionEditText" />
 
     <EditText
         android:id="@+id/restrictionEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/find_recipe_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="45dp"
         android:background="?attr/colorButtonNormal"
         android:ems="10"
         android:hint="Ingredient to exclude"
         android:inputType="text"
         android:padding="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat" />
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_above="@+id/find_recipe_button"
+        android:layout_centerHorizontal="true" />
 
 
     <Button
         android:id="@+id/find_recipe_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Find Soups"
         android:background="@color/colorAccent"
+        android:text="Find Soups"
+        android:layout_alignTop="@+id/savedSoupListButton"
+        android:layout_toLeftOf="@+id/restrictionEditText"
+        android:layout_toStartOf="@+id/restrictionEditText" />
+
+    <Button
+        android:id="@+id/savedSoupListButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="27dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:background="@color/colorAccent"
+        android:text="Saved Soup List"
+        android:visibility="visible" />
 
 </RelativeLayout>

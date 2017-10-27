@@ -32,6 +32,8 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
     TextView mRecipeLabel;
     @Bind(R.id.imageTextView) TextView mImageLabel;
     @Bind(R.id.restrictionTextView) TextView mRestrictionLabel;
+//    @Bind(R.id.prepTextView) TextView mPrepLabel;
+//    @Bind(R.id.ratingTextView) TextView mRatingLabel;
     @Bind(R.id.saveSoupButton)
     TextView mSaveSoupButton;
 
