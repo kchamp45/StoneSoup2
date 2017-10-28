@@ -5,11 +5,16 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,6 +36,7 @@ import okhttp3.Response;
 
 public class SoupListActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
     private String mRestriction;
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -55,6 +61,11 @@ public class SoupListActivity extends AppCompatActivity {
         if (mRestriction != null) {
             getSoups(soup, mRestriction);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     private void getSoups(String soup, String restriction) {
@@ -89,6 +100,10 @@ public class SoupListActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    private void addToSharedPreferences(String location) {
+        mEditor.putString(Constants.PREFERENCES_RESTRICTION_KEY, location).apply();
     }
 
 }
