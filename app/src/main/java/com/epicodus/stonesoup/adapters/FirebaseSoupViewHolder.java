@@ -37,10 +37,11 @@ public class FirebaseSoupViewHolder extends RecyclerView.ViewHolder implements V
         TextView nameTextView = (TextView) mView.findViewById(R.id.soupNameTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
         TextView prepTextView = (TextView) mView.findViewById(R.id.prepTextView);
+        TextView restrictionTextView = (TextView) mView.findViewById(R.id.restrictionTextView);
 
         nameTextView.setText(soup.getName());
         ratingTextView.setText("Rating: " + soup.getRating() + "/5");
-        prepTextView.setText("Prep Time: " + soup.getPrepTime() + " minutes");
+        restrictionTextView.setText("Excludes: " + soup.getRestriction());
     }
 
     @Override
