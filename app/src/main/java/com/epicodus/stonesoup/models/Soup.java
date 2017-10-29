@@ -13,6 +13,7 @@ public class Soup {
     private List<String> ingredients = new ArrayList<>();
     private String imageUrl;
     private String restriction;
+    private String pushId;
 
     public Soup() {
     }
@@ -49,5 +50,13 @@ public class Soup {
 
     public String getRestriction() {
         return restriction;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }

@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.epicodus.stonesoup.Constants;
 import com.epicodus.stonesoup.R;
 import com.epicodus.stonesoup.models.Soup;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -77,10 +79,18 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if (v == mSaveSoupButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
             DatabaseReference soupRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_SOUPS);
-            soupRef.push().setValue(mSoup);
+                    .getReference(Constants.FIREBASE_CHILD_SOUPS)
+                    .child(uid);
+
+            DatabaseReference pushRef = soupRef.push();
+            String pushId = pushRef.getKey();
+            mSoup.setPushId(pushId);
+            pushRef.setValue(mSoup);
+
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
         if (v == mRecipeLabel) {

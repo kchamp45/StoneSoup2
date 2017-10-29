@@ -10,6 +10,8 @@ import com.epicodus.stonesoup.R;
 import com.epicodus.stonesoup.adapters.FirebaseSoupViewHolder;
 import com.epicodus.stonesoup.models.Soup;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,11 +28,13 @@ public class SavedSoupListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_soups);
         ButterKnife.bind(this);
 
-        mSoupReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_SOUPS);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mSoupReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_SOUPS).child(uid);
         setUpFirebaseAdapter();
     }
 
