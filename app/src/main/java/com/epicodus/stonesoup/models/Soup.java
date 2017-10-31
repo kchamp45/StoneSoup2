@@ -14,6 +14,7 @@ public class Soup {
     private String imageUrl;
     private String restriction;
     private String pushId;
+    String index;
 
     public Soup() {
     }
@@ -25,6 +26,7 @@ public class Soup {
         this.ingredients = ingredients;
         this.imageUrl = imageUrl;
         this.restriction = restriction;
+        this.index = "not_specified";
     }
 
     public String getName() {
@@ -58,5 +60,13 @@ public class Soup {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }

@@ -17,5 +17,6 @@ public class Constants {
 
     public static final String PREFERENCES_RESTRICTION_KEY = "excludedIngredient";
     public static final String FIREBASE_CHILD_SOUPS = "soups";
+    public static final String FIREBASE_QUERY_INDEX = "index";
 
 }
