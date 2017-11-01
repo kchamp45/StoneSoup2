@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epicodus.stonesoup.R;
@@ -49,6 +50,8 @@ public class SoupListAdapter extends RecyclerView.Adapter<SoupListAdapter.SoupVi
         @Bind(R.id.soupNameTextView) TextView mNameTextView;
         @Bind(R.id.ratingTextView) TextView mRatingTextView;
         @Bind(R.id.prepTextView) TextView mPrepTextView;
+        @Bind(R.id.soupImageView)
+        ImageView mSoupImageView;
 //        @Bind(R.id.ingredientTextView) TextView mIngredientTextView;
 
         private Context mContext;
@@ -64,6 +67,7 @@ public class SoupListAdapter extends RecyclerView.Adapter<SoupListAdapter.SoupVi
             mNameTextView.setText(soup.getName());
             mRatingTextView.setText("Rating: " + soup.getRating() + "/5");
             mPrepTextView.setText("Total Prep Time: " + soup.getPrepTime() + " minutes");
+//            mSoupImageView.setText(soup.getImageUrl());
 //            mIngredientTextView.setText("Ingredients: " + soup.getIngredients());
 
         }

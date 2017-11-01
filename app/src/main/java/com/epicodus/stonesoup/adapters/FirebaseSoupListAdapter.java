@@ -22,7 +22,7 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class FirebaseSoupListAdapter extends FirebaseRecyclerAdapter<Soup, FirebaseSoupViewHolder> implements ItemTouchHelperAdapter {
+public class  FirebaseSoupListAdapter extends FirebaseRecyclerAdapter<Soup, FirebaseSoupViewHolder> implements ItemTouchHelperAdapter {
     private ChildEventListener mChildEventListener;
     private ArrayList<Soup> mSoups = new ArrayList<>();
 

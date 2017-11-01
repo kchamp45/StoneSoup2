@@ -6,23 +6,25 @@
     android:layout_height="match_parent"
     tools:context="com.epicodus.stonesoup.ui.SoupListActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerView"/>
-
-    <TextView
-        android:id="@+id/soupTextView"
+    <fragment
+        android:id="@+id/fragmentSoupList"
+        android:name="com.epicodus.stonesoup.ui.SoupListFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true" />
+        tools:layout="@layout/fragment_soup_list" />
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/soupTextView" />
+    <!--<TextView-->
+        <!--android:id="@+id/soupTextView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true" />-->
+
+    <!--<ListView-->
+        <!--android:id="@+id/listView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_below="@+id/soupTextView" />-->
 
 </RelativeLayout>

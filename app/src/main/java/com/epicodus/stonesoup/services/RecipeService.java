@@ -56,8 +56,10 @@ public class RecipeService {
                 String name = soupJSON.getString("recipeName");
                 int rating = soupJSON.getInt("rating");
                 int totalPrepTime = soupJSON.getInt("totalTimeInSeconds");
-                String imageUrl = soupJSON.getJSONObject("imageUrlsBySize").getString("90");
 
+                String oldImageUrl = soupJSON.getJSONArray("smallImageUrls").get(0).toString();
+                String imageUrl = oldImageUrl.replace("=s9", "");
+                Log.v("soup", imageUrl);
                 ArrayList<String> ingredients = new ArrayList<>();
                 JSONArray ingredientJSON = soupJSON.getJSONArray("ingredients");
                 for (int y = 0; y < ingredientJSON.length(); y++) {

@@ -5,6 +5,8 @@ import org.parceler.Parcel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.firebase.ui.database.R.id.image;
+
 @Parcel
 public class Soup {
     private String name;
@@ -19,12 +21,12 @@ public class Soup {
     public Soup() {
     }
 
-    public Soup(String name, int rating, int prepTime, ArrayList<String> ingredients, String imageUrl, String restriction) {
+    public Soup(String name, int rating, int prepTime, ArrayList<String> ingredients, String image, String restriction) {
         this.name = name;
         this.rating = rating;
         this.prepTime = prepTime;
         this.ingredients = ingredients;
-        this.imageUrl = imageUrl;
+        this.imageUrl = image;
         this.restriction = restriction;
         this.index = "not_specified";
     }
@@ -47,6 +49,7 @@ public class Soup {
     }
 
     public String getImageUrl() {
+
         return imageUrl;
     }
 
