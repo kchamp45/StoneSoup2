@@ -2,12 +2,18 @@ package com.epicodus.stonesoup.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MotionEventCompat;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.epicodus.stonesoup.Constants;
+import com.epicodus.stonesoup.R;
 import com.epicodus.stonesoup.models.Soup;
 import com.epicodus.stonesoup.ui.SoupDetailActivity;
+import com.epicodus.stonesoup.ui.SoupDetailFragment;
 import com.epicodus.stonesoup.util.ItemTouchHelperAdapter;
 import com.epicodus.stonesoup.util.OnStartDragListener;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -29,6 +35,7 @@ public class  FirebaseSoupListAdapter extends FirebaseRecyclerAdapter<Soup, Fire
     private DatabaseReference mRef;
     private OnStartDragListener mOnStartDragListener;
     private Context mContext;
+    private int mOrientation;
 
     public FirebaseSoupListAdapter(Class<Soup> modelClass, int modelLayout,
                                    Class<FirebaseSoupViewHolder> viewHolderClass,
@@ -69,6 +76,11 @@ public class  FirebaseSoupListAdapter extends FirebaseRecyclerAdapter<Soup, Fire
     @Override
     protected void populateViewHolder(final FirebaseSoupViewHolder viewHolder, Soup model, int position) {
         viewHolder.bindSoup(model);
+
+        mOrientation = viewHolder.itemView.getResources().getConfiguration().orientation;
+        if(mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            createDetailFragment(0);
+        }
         viewHolder.mSoupTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -82,12 +94,25 @@ public class  FirebaseSoupListAdapter extends FirebaseRecyclerAdapter<Soup, Fire
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, SoupDetailActivity.class);
-                intent.putExtra("position", viewHolder.getAdapterPosition());
-                intent.putExtra("soups", Parcels.wrap(mSoups));
-                mContext.startActivity(intent);
+                int itemPosition = viewHolder.getAdapterPosition();
+                if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    createDetailFragment(itemPosition);
+                } else {
+                    Intent intent = new Intent(mContext, SoupDetailActivity.class);
+                    intent.putExtra(Constants.EXTRA_KEY_POSITION, viewHolder.getAdapterPosition());
+                    intent.putExtra(Constants.EXTRA_KEY_SOUPS, Parcels.wrap(mSoups));
+                    mContext.startActivity(intent);
+                }
             }
         });
+    }
+
+    private void createDetailFragment(int position) {
+
+        SoupDetailFragment detailFragment = SoupDetailFragment.newInstance(mSoups, position);
+        FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.soupDetailContainer, detailFragment);
+        ft.commit();
     }
 
     @Override

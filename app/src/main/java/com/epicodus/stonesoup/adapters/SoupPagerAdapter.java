@@ -19,7 +19,7 @@ public class SoupPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return SoupDetailFragment.newInstance(mSoups.get(position));
+        return SoupDetailFragment.newInstance(mSoups, position);
     }
 
     @Override

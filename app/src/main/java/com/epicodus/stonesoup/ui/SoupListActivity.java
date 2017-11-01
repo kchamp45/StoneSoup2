@@ -48,62 +48,63 @@ public class SoupListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soups);
-        ButterKnife.bind(this);
-
-        Intent intent = getIntent();
-        String soup = intent.getStringExtra("soup");
-        String restriction = intent.getStringExtra("restriction");
-
-        getSoups(soup, restriction);
-
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRestriction = mSharedPreferences.getString(Constants.PREFERENCES_RESTRICTION_KEY, null);
-        if (mRestriction != null) {
-            getSoups(soup, mRestriction);
-        }
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void getSoups(String soup, String restriction) {
-        final RecipeService recipeService = new RecipeService();
-        recipeService.findRecipes(soup, restriction, new Callback() {
-
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                soups = recipeService.processResults(response);
-
-                SoupListActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter = new SoupListAdapter(getApplicationContext(), soups);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(SoupListActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
-
-                        for(Soup soup : soups){
-                        }
-
-                    }
-                });
-            }
-
-        });
-    }
-
-    private void addToSharedPreferences(String location) {
-        mEditor.putString(Constants.PREFERENCES_RESTRICTION_KEY, location).apply();
-    }
+//        ButterKnife.bind(this);
+//
+//        Intent intent = getIntent();
+//        String soup = intent.getStringExtra("soup");
+//        String restriction = intent.getStringExtra("restriction");
+//
+//        getSoups(soup, restriction);
+//
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRestriction = mSharedPreferences.getString(Constants.PREFERENCES_RESTRICTION_KEY, null);
+//        if (mRestriction != null) {
+//            getSoups(soup, mRestriction);
+//        }
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//    private void getSoups(String soup, String restriction) {
+//        final RecipeService recipeService = new RecipeService();
+//        recipeService.findRecipes(soup, restriction, new Callback() {
+//
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                soups = recipeService.processResults(response);
+//
+//                SoupListActivity.this.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mAdapter = new SoupListAdapter(getApplicationContext(), soups);
+//                        mRecyclerView.setAdapter(mAdapter);
+//                        RecyclerView.LayoutManager layoutManager =
+//                                new LinearLayoutManager(SoupListActivity.this);
+//                        mRecyclerView.setLayoutManager(layoutManager);
+//                        mRecyclerView.setHasFixedSize(true);
+//
+//                        for(Soup soup : soups){
+//                        }
+//
+//                    }
+//                });
+//            }
+//
+//        });
+//    }
+//
+//    private void addToSharedPreferences(String location) {
+//        mEditor.putString(Constants.PREFERENCES_RESTRICTION_KEY, location).apply();
+//    }
 
 }
 

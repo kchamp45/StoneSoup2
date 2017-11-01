@@ -29,7 +29,7 @@ public class SavedSoupListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_soups);
+        setContentView(R.layout.activity_saved_soup_list);
     }
 
 }

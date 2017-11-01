@@ -31,13 +31,12 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class SavedSoupListFragment extends Fragment implements OnStartDragListener {
+    @Bind(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
     private DatabaseReference mSoupReference;
     private FirebaseSoupListAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
-
-
-    @Bind(R.id.recyclerView)
-    RecyclerView mRecyclerView;
 
 
     public SavedSoupListFragment() {
@@ -59,7 +58,6 @@ public class SavedSoupListFragment extends Fragment implements OnStartDragListen
         String uid = user.getUid();
 
         Query query = FirebaseDatabase.getInstance()
-                .getInstance()
                 .getReference(Constants.FIREBASE_CHILD_SOUPS)
                 .child(uid)
                 .orderByChild(Constants.FIREBASE_QUERY_INDEX);
@@ -70,15 +68,17 @@ public class SavedSoupListFragment extends Fragment implements OnStartDragListen
                 .getReference(Constants.FIREBASE_CHILD_SOUPS)
                 .child(uid);
 
-        Log.v("here", mSoupReference + "");
-
         mFirebaseAdapter = new FirebaseSoupListAdapter(Soup.class,
                 R.layout.soup_list_item_drag, FirebaseSoupViewHolder.class,
-                mSoupReference, this, getActivity());
+               query, this, getActivity());
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mFirebaseAdapter);
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
 
         mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -87,20 +87,19 @@ public class SavedSoupListFragment extends Fragment implements OnStartDragListen
                 mFirebaseAdapter.notifyDataSetChanged();
             }
         });
-
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
-        mItemTouchHelper = new ItemTouchHelper(callback);
-        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mFirebaseAdapter.cleanup();
     }
 
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mFirebaseAdapter.cleanup();
+    }
+
+
 
 }

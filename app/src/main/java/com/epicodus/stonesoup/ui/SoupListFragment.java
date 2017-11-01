@@ -29,16 +29,15 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class SoupListFragment extends Fragment {
+    @Bind(R.id.recyclerView)
+    RecyclerView mRecyclerView;
 
+    private SoupListAdapter mAdapter;
+    public ArrayList<Soup> soups = new ArrayList<>();
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRestriction;
 
-    @Bind(R.id.recyclerView)
-    RecyclerView mRecyclerView;
-    private SoupListAdapter mAdapter;
-
-    public ArrayList<Soup> soups = new ArrayList<>();
 
     public SoupListFragment() {
         // Required empty public constructor
@@ -47,18 +46,9 @@ public class SoupListFragment extends Fragment {
    public void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
 
-       Intent intent = getActivity().getIntent();
-       String soup = intent.getStringExtra("soup");
-       String restriction = intent.getStringExtra("restriction");
-
-       getSoups(soup, restriction);
-
        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
        mEditor = mSharedPreferences.edit();
-       mRestriction = mSharedPreferences.getString(Constants.PREFERENCES_RESTRICTION_KEY, null);
-       if (mRestriction != null) {
-           getSoups(soup, mRestriction);
-       }
+
        setHasOptionsMenu(true);
    }
 
@@ -85,9 +75,9 @@ public class SoupListFragment extends Fragment {
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
 
-                        for(Soup soup : soups){
-                            soup.getImageUrl();
-                        }
+//                        for(Soup soup : soups){
+//                            soup.getImageUrl();
+//                        }
 
                     }
                 });
@@ -102,6 +92,17 @@ public class SoupListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_soup_list, container, false);
         ButterKnife.bind(this, view);
+
+        Intent intent = getActivity().getIntent();
+        String soup = intent.getStringExtra("soup");
+        String restriction = intent.getStringExtra("restriction");
+
+        getSoups(soup, restriction);
+
+        mRestriction = mSharedPreferences.getString(Constants.PREFERENCES_RESTRICTION_KEY, null);
+        if (mRestriction != null) {
+            getSoups(soup, mRestriction);
+        }
         return view;
     }
 

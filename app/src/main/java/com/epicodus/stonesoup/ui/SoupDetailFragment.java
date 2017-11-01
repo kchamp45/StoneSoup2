@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -40,14 +42,17 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
     TextView mSaveSoupButton;
 
     private Soup mSoup;
+    private ArrayList<Soup> mSoups;
+    private int mPosition;
 
     public SoupDetailFragment() {
     }
 
-    public static SoupDetailFragment newInstance(Soup soup) {
+    public static SoupDetailFragment newInstance(ArrayList<Soup> soups, Integer position) {
         SoupDetailFragment soupDetailFragment = new SoupDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("soup", Parcels.wrap(soup));
+        args.putParcelable(Constants.EXTRA_KEY_SOUPS, Parcels.wrap(soups));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
         soupDetailFragment.setArguments(args);
         return soupDetailFragment;
     }
@@ -55,7 +60,9 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSoup = Parcels.unwrap(getArguments().getParcelable("soup"));
+        mSoups = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_SOUPS));
+        mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+        mSoup = mSoups.get(mPosition);
     }
 
     @Override
