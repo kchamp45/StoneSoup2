@@ -58,7 +58,7 @@ public class RecipeService {
                 int totalPrepTime = soupJSON.getInt("totalTimeInSeconds");
 
                 String oldImageUrl = soupJSON.getJSONArray("smallImageUrls").get(0).toString();
-                String imageUrl = oldImageUrl.replace("=s9", "");
+                String imageUrl = oldImageUrl.replace("=s90", "");
                 Log.v("soup", imageUrl);
                 ArrayList<String> ingredients = new ArrayList<>();
                 JSONArray ingredientJSON = soupJSON.getJSONArray("ingredients");
