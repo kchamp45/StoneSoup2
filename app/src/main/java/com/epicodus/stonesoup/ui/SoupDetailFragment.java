@@ -34,7 +34,7 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
     TextView mIngredientLabel;
     @Bind(R.id.recipeTextView)
     TextView mRecipeLabel;
-    @Bind(R.id.imageTextView) TextView mImageLabel;
+//    @Bind(R.id.imageTextView) TextView mImageLabel;
     @Bind(R.id.restrictionTextView) TextView mRestrictionLabel;
 //    @Bind(R.id.prepTextView) TextView mPrepLabel;
 //    @Bind(R.id.ratingTextView) TextView mRatingLabel;
@@ -75,7 +75,7 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
         mRestrictionLabel.setText("RESTRICTIONS: No " + mSoup.getRestriction());
 
 
-        mImageLabel.setOnClickListener(this);
+//        mImageLabel.setOnClickListener(this);
         mRecipeLabel.setOnClickListener(this);
 
         mSaveSoupButton.setOnClickListener(this);
@@ -106,9 +106,9 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
             startActivity(webIntent);
         }
 
-        if(v == mImageLabel){
-            Intent imageIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mSoup.getImageUrl()));
-            startActivity(imageIntent);
-        }
+//        if(v == mImageLabel){
+//            Intent imageIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mSoup.getImageUrl()));
+//            startActivity(imageIntent);
+//        }
     }
 }
