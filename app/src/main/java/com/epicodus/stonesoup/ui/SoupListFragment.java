@@ -40,7 +40,7 @@ public class SoupListFragment extends Fragment {
 
 
     public SoupListFragment() {
-        // Required empty public constructor
+
     }
 
    public void onCreate(Bundle savedInstanceState) {
@@ -75,10 +75,6 @@ public class SoupListFragment extends Fragment {
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
 
-//                        for(Soup soup : soups){
-//                            soup.getImageUrl();
-//                        }
-
                     }
                 });
             }
@@ -89,7 +85,7 @@ public class SoupListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_soup_list, container, false);
         ButterKnife.bind(this, view);
 

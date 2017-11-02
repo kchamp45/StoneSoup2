@@ -91,8 +91,6 @@ public class SoupListAdapter extends RecyclerView.Adapter<SoupListAdapter.SoupVi
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
                     .into(mSoupImageView);
-//            mSoupImageView.setText(soup.getImageUrl());
-//            mIngredientTextView.setText("Ingredients: " + soup.getIngredients());
 
         }
 

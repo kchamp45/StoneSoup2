@@ -12,9 +12,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="167dp"
-            android:orientation="horizontal"
+            android:layout_height="112dp"
             android:background="@android:color/white"
+            android:orientation="horizontal"
             android:paddingBottom="20dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -36,13 +36,13 @@
                 android:id="@+id/recipeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Go to Recipe"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="italic"
-                android:layout_below="@+id/soupNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="12dp" />
+                android:layout_below="@+id/soupNameTextView"
+                android:layout_marginTop="12dp"
+                android:text="Go to Recipe"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="italic" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -52,14 +52,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:paddingTop="20dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true">
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="20dp"
+                android:weightSum="1">
 
                 <TextView
                     android:id="@+id/restrictionTextView"
@@ -76,7 +77,9 @@
                     android:id="@+id/ingredientTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/restrictionTextView"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="0.15"
                     android:drawablePadding="4dp"
                     android:gravity="center_vertical"
                     android:text="broth"
