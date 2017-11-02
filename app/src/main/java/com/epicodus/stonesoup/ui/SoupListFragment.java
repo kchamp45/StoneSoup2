@@ -1,6 +1,7 @@
 package com.epicodus.stonesoup.ui;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.epicodus.stonesoup.R;
 import com.epicodus.stonesoup.adapters.SoupListAdapter;
 import com.epicodus.stonesoup.models.Soup;
 import com.epicodus.stonesoup.services.RecipeService;
+import com.epicodus.stonesoup.util.OnSoupSelectedListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +39,16 @@ public class SoupListFragment extends Fragment {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRestriction;
+    private OnSoupSelectedListener mOnSoupSelectedListener;
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        try {
+            mOnSoupSelectedListener = (OnSoupSelectedListener) context;
+        } catch (ClassCastException e){
+            throw new ClassCastException(context.toString()+ e.getMessage());
+        }
+    }
 
 
     public SoupListFragment() {
@@ -68,7 +80,7 @@ public class SoupListFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter = new SoupListAdapter(getActivity(), soups);
+                        mAdapter = new SoupListAdapter(getActivity(), soups, mOnSoupSelectedListener);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager =
                                 new LinearLayoutManager(getActivity());

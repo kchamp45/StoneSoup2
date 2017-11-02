@@ -17,6 +17,7 @@ import com.epicodus.stonesoup.R;
 import com.epicodus.stonesoup.models.Soup;
 import com.epicodus.stonesoup.ui.SoupDetailActivity;
 import com.epicodus.stonesoup.ui.SoupDetailFragment;
+import com.epicodus.stonesoup.util.OnSoupSelectedListener;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -33,16 +34,18 @@ public class SoupListAdapter extends RecyclerView.Adapter<SoupListAdapter.SoupVi
 
     private ArrayList<Soup> mSoups = new ArrayList<>();
     private Context mContext;
+    private OnSoupSelectedListener mOnSoupSelectedListener;
 
-    public SoupListAdapter(Context context, ArrayList<Soup> soups) {
+    public SoupListAdapter(Context context, ArrayList<Soup> soups, OnSoupSelectedListener soupSelectedListener) {
         mContext = context;
         mSoups = soups;
+        mOnSoupSelectedListener = soupSelectedListener;
     }
 
     @Override
     public SoupListAdapter.SoupViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.soup_list_item, parent, false);
-        SoupViewHolder viewHolder = new SoupViewHolder(view);
+        SoupViewHolder viewHolder = new SoupViewHolder(view, mSoups, mOnSoupSelectedListener);
         return viewHolder;
     }
 
@@ -69,18 +72,23 @@ public class SoupListAdapter extends RecyclerView.Adapter<SoupListAdapter.SoupVi
 
         private Context mContext;
         private int mOrientation;
+        private ArrayList<Soup>mSoups = new ArrayList<>();
+        private OnSoupSelectedListener mSoupSelectedListener;
 
-        public SoupViewHolder(View itemView) {
+        public SoupViewHolder(View itemView, ArrayList<Soup> soups, OnSoupSelectedListener soupSelectedListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
             mContext = itemView.getContext();
-            itemView.setOnClickListener(this);
 
             mOrientation = itemView.getResources().getConfiguration().orientation;
+            mSoups = soups;
+            mOnSoupSelectedListener = soupSelectedListener;
+
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                 createDetailFragment(0);
             }
+            itemView.setOnClickListener(this);
         }
 
         public void bindSoup(Soup soup) {
@@ -97,18 +105,20 @@ public class SoupListAdapter extends RecyclerView.Adapter<SoupListAdapter.SoupVi
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
+            mOnSoupSelectedListener.onSoupSelected(itemPosition, mSoups, Constants.SOURCE_FIND);
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                 createDetailFragment(itemPosition);
             } else {
                 Intent intent = new Intent(mContext, SoupDetailActivity.class);
                 intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
                 intent.putExtra(Constants.EXTRA_KEY_SOUPS, Parcels.wrap(mSoups));
+                intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
                 mContext.startActivity(intent);
             }
         }
 
         private void createDetailFragment(int position) {
-            SoupDetailFragment detailFragment = SoupDetailFragment.newInstance(mSoups, position);
+            SoupDetailFragment detailFragment = SoupDetailFragment.newInstance(mSoups, position, Constants.SOURCE_FIND);
             FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.soupDetailContainer, detailFragment);
             ft.commit();

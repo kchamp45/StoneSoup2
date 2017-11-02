@@ -99,8 +99,9 @@ public class  FirebaseSoupListAdapter extends FirebaseRecyclerAdapter<Soup, Fire
                     createDetailFragment(itemPosition);
                 } else {
                     Intent intent = new Intent(mContext, SoupDetailActivity.class);
-                    intent.putExtra(Constants.EXTRA_KEY_POSITION, viewHolder.getAdapterPosition());
+                    intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
                     intent.putExtra(Constants.EXTRA_KEY_SOUPS, Parcels.wrap(mSoups));
+                    intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_SAVED);
                     mContext.startActivity(intent);
                 }
             }
@@ -109,7 +110,7 @@ public class  FirebaseSoupListAdapter extends FirebaseRecyclerAdapter<Soup, Fire
 
     private void createDetailFragment(int position) {
 
-        SoupDetailFragment detailFragment = SoupDetailFragment.newInstance(mSoups, position);
+        SoupDetailFragment detailFragment = SoupDetailFragment.newInstance(mSoups, position, Constants.SOURCE_SAVED);
         FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.soupDetailContainer, detailFragment);
         ft.commit();

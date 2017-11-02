@@ -11,15 +11,17 @@ import java.util.ArrayList;
 
 public class SoupPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Soup> mSoups;
+    private String mSource;
 
-    public SoupPagerAdapter(FragmentManager fm, ArrayList<Soup> soups) {
+    public SoupPagerAdapter(FragmentManager fm, ArrayList<Soup> soups, String source) {
         super(fm);
         mSoups = soups;
+        mSource = source;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return SoupDetailFragment.newInstance(mSoups, position);
+        return SoupDetailFragment.newInstance(mSoups, position, mSource);
     }
 
     @Override

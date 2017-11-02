@@ -41,15 +41,17 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
     private Soup mSoup;
     private ArrayList<Soup> mSoups;
     private int mPosition;
+    private String mSource;
 
     public SoupDetailFragment() {
     }
 
-    public static SoupDetailFragment newInstance(ArrayList<Soup> soups, Integer position) {
+    public static SoupDetailFragment newInstance(ArrayList<Soup> soups, Integer position, String source) {
         SoupDetailFragment soupDetailFragment = new SoupDetailFragment();
         Bundle args = new Bundle();
         args.putParcelable(Constants.EXTRA_KEY_SOUPS, Parcels.wrap(soups));
         args.putInt(Constants.EXTRA_KEY_POSITION, position);
+        args.putString(Constants.KEY_SOURCE, source);
         soupDetailFragment.setArguments(args);
         return soupDetailFragment;
     }
@@ -60,12 +62,20 @@ public class SoupDetailFragment extends Fragment implements View.OnClickListener
         mSoups = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_SOUPS));
         mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
         mSoup = mSoups.get(mPosition);
+        mSource = getArguments().getString(Constants.KEY_SOURCE);
+        setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_soup_detail, container, false);
         ButterKnife.bind(this, view);
+
+        if (mSource.equals(Constants.SOURCE_SAVED)) {
+            mSaveSoupButton.setVisibility(View.GONE);
+        } else {
+            mSaveSoupButton.setOnClickListener(this);
+        }
 
         mNameLabel.setText(mSoup.getName());
         mIngredientLabel.setText("INGREDIENTS: " + android.text.TextUtils.join(", ", mSoup.getIngredients()));
