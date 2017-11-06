@@ -34,7 +34,7 @@ public class SavedSoupListFragment extends Fragment implements OnStartDragListen
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    private DatabaseReference mSoupReference;
+//    private DatabaseReference mSoupReference;
     private FirebaseSoupListAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
 
@@ -63,10 +63,10 @@ public class SavedSoupListFragment extends Fragment implements OnStartDragListen
                 .orderByChild(Constants.FIREBASE_QUERY_INDEX);
 
 
-        mSoupReference = FirebaseDatabase
-                .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_SOUPS)
-                .child(uid);
+//        mSoupReference = FirebaseDatabase
+//                .getInstance()
+//                .getReference(Constants.FIREBASE_CHILD_SOUPS)
+//                .child(uid);
 
         mFirebaseAdapter = new FirebaseSoupListAdapter(Soup.class,
                 R.layout.soup_list_item_drag, FirebaseSoupViewHolder.class,
